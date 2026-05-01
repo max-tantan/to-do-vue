@@ -1,9 +1,29 @@
 <script setup>
-const addTodo = ref('');
+import { ref } from 'vue';
 
+const todos = ref([]);
+const newTodo = ref('');
+const filter = ref('all');
+
+const addTodo = () => {
+
+//mengecek apakah input kosong atau tidak
 if(newTodo.value.trim() === '') {
     alert('todo tidak boleh kosong');
     return;
+}
+
+//menambahkan todo baru ke dalam list
+const todoItem = {
+    id: Date.now(),
+    text: newTodo.value,
+    completed: false
+}
+
+//push todo baru ke dalam array todos
+todos.value.push(todoItem);
+
+newTodo.value = '';
 }
 </script>
 <template>
