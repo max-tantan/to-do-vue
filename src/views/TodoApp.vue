@@ -22,9 +22,12 @@ const todoItem = {
 
 //push todo baru ke dalam array todos
 todos.value.push(todoItem);
-
 newTodo.value = '';
 }
+
+const filteredTodos = computed(() => {
+    return todos.value
+})
 </script>
 <template>
 <h1>Website To-Do-List</h1>
@@ -41,7 +44,7 @@ newTodo.value = '';
 
 <div class="to-do-list">
     <ul>
-        <li v-for="todo in todos" :key="todo.id">
+        <li v-for="todo in filteredTodos" :key="todo.id">
             {{ todo.text }}
         </li>
     </ul>
