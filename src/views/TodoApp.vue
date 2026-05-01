@@ -28,9 +28,22 @@ newTodo.value = '';
 </script>
 <template>
 <h1>Website To-Do-List</h1>
+
 <div class="todo-input">
-    <input type="text" v-model="addTodo" placeholder="Add a new todo..." @keyup.enter="addTodo"
+    <input 
+    type="text" 
+    v-model="newTodo" 
+    placeholder="Add a new todo..." 
+    @keyup.enter="addTodo"
     />
     <button @click="addTodo">Add Todo</button>
+</div>
+
+<div class="to-do-list">
+    <ul>
+        <li v-for="todo in todos" :key="todo.id">
+            {{ todo.text }}
+        </li>
+    </ul>
 </div>
 </template>
