@@ -28,6 +28,25 @@ newTodo.value = '';
 const filteredTodos = computed(() => {
     return todos.value
 })
+
+//delete todo
+const deleteTodo = (id) => {
+    todos.value = todos.value.filter(t => t.id !== id);
+}
+
+//total todo dan status
+const totalTodos = computed(() => 
+todos.value.length
+);
+
+const completedTodos =computed(() => 
+todos.value.filter(t => t.completed).length
+);
+
+const activeTodos = computed(() =>
+totalTodos.value - completedTodos.value
+);
+
 </script>
 <template>
 <h1>Website To-Do-List</h1>
@@ -42,11 +61,23 @@ const filteredTodos = computed(() => {
     <button @click="addTodo">Add Todo</button>
 </div>
 
+<div class="todo-stats">
+    <div class="stats">
+        <strong>Total: {{ totalTodos }}</strong>
+    </div>
+    <div class="stats">
+        <strong>Completed: {{ completedTodos }}</strong>
+    </div>
+    <div class="stats">
+        <strong>Active: {{ activeTodos }}</strong>
+    </div>
+</div>
 <div class="to-do-list">
     <ul>
         <li v-for="todo in filteredTodos" :key="todo.id">
             <input type="checkbox" v-model="todo.completed" />
             <span :class="{ completed: todo.completed }">{{ todo.text }}</span>
+            <button @click="deleteTodo(todo.id)">Hapus</button>
         </li>
     </ul>
 </div>
