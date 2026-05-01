@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const todos = ref([]);
 const newTodo = ref('');
@@ -45,8 +45,18 @@ const filteredTodos = computed(() => {
 <div class="to-do-list">
     <ul>
         <li v-for="todo in filteredTodos" :key="todo.id">
-            {{ todo.text }}
+            <input type="checkbox" v-model="todo.completed" />
+            <span :class="{ completed: todo.completed }">{{ todo.text }}</span>
         </li>
     </ul>
 </div>
+
+
 </template>
+
+<style scoped>
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+</style>
