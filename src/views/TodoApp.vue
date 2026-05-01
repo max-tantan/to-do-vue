@@ -49,7 +49,7 @@ totalTodos.value - completedTodos.value
 
 </script>
 <template>
-<h1>Website To-Do-List</h1>
+<h1>Todo</h1>
 
 <div class="todo-input">
     <input 
